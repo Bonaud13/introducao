@@ -210,6 +210,27 @@ button.card{cursor:pointer}
 <img src="{{cur.img}}" alt="{{cur.alt}}" style="width: 100%; max-width: 860px; border-radius: 10px; display: block">
 <figcaption style="font-size: 14px; color: #A0A0A0">{{cur.caption}}</figcaption>
 </figure>
+<sc-if value="{{cur.hasPhones}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; gap: 40px 26px; justify-content: center">
+<sc-for list="{{cur.phones}}" as="ph">
+<figure style="margin: 0; display: flex; flex-direction: column; align-items: center; gap: 18px">
+<div style="position: relative; width: 210px; padding: 4px; box-sizing: border-box; border-radius: 46px; background: linear-gradient(145deg, #8a7389 0%, #6f5b6e 45%, #574556 100%); box-shadow: 0 22px 36px -10px rgba(0,0,0,0.6)">
+<span style="position: absolute; left: -3px; top: 92px; width: 3px; height: 22px; border-radius: 2px 0 0 2px; background: #6f5b6e"></span>
+<span style="position: absolute; left: -3px; top: 138px; width: 3px; height: 40px; border-radius: 2px 0 0 2px; background: #6f5b6e"></span>
+<span style="position: absolute; left: -3px; top: 190px; width: 3px; height: 40px; border-radius: 2px 0 0 2px; background: #6f5b6e"></span>
+<span style="position: absolute; right: -3px; top: 150px; width: 3px; height: 62px; border-radius: 0 2px 2px 0; background: #6f5b6e"></span>
+<div style="position: relative; border-radius: 42px; background: #0A0A0A; padding: 6px; box-sizing: border-box">
+<div style="position: relative; border-radius: 36px; overflow: hidden; aspect-ratio: 738 / 1600; background: #F5F5F5">
+<img src="{{ph.img}}" alt="{{ph.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">
+</div>
+<span style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 62px; height: 18px; border-radius: 10px; background: #050505"></span>
+</div>
+</div>
+<figcaption style="font-size: 14px; color: #A0A0A0">{{ph.cap}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</sc-if>
 <sc-if value="{{cur.gallery}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center">
 <figure style="margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px">
@@ -253,7 +274,13 @@ site: 'https://pprtia.vercel.app', repo: 'https://github.com/Bonaud13/nfc-avalia
 { real: true, slot: false, title: 'App de finanças para dois moradores dividirem a casa', client: 'Home Finance · um produto NAUD',
 name: 'Home Finance', aria: 'Ver detalhes do Home Finance', img: './assets/home-finance-landing.png', pos: '50% 50%', fit: 'contain', bg: '#064e3b',
 alt: 'Landing page do Home Finance com um iPhone mostrando saldo do mês, quanto posso gastar e custo da casa', caption: 'Landing page e a tela inicial do app',
-tag: 'Home Finance · produto NAUD', gallery: false,
+tag: 'Home Finance · produto NAUD', gallery: false, hasPhones: true,
+phones: [
+{ img: './assets/hf-inicio.jpg', alt: 'Tela Início do Home Finance com saldo do mês, atalhos e quanto posso gastar', cap: 'Início' },
+{ img: './assets/hf-financeiro.jpg', alt: 'Tela Financeiro com receitas, despesas e saldo de novembro', cap: 'Financeiro' },
+{ img: './assets/hf-receita.jpg', alt: 'Tela de lançar uma nova receita com teclado numérico', cap: 'Lançar receita' },
+{ img: './assets/hf-casa.jpg', alt: 'Tela Casa com tarefas, calendário, custo da casa e abatimento do aluguel', cap: 'Casa' }
+],
 intro: 'App para duas pessoas que moram juntas organizarem contas, compras, custo da casa e o acerto entre elas. Cada um vê o que pagou, o que deve e quanto ainda dá para gastar no mês. Funciona no iPhone e no navegador.',
 items: [
 { t: 'Finanças compartilhadas:', d: 'receitas e despesas com quem pagou × quem é responsável (individual, igual, por % ou por valor), contas fixas recorrentes e saldo de acerto entre os moradores.' },
